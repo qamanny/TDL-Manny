@@ -1,5 +1,7 @@
 package com.qa.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +29,14 @@ public class TaskController {
 	
 	//Get
 	
-	@GetMapping
+	@GetMapping("/readAll")
+	public ResponseEntity<List<TaskDTO>> readAll() {
+		return ResponseEntity.ok(this.service.readAll());
+		
+	}
+	
+	
+	@GetMapping("/read/{id}")
 	
 	//Post
 	

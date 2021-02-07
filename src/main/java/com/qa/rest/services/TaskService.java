@@ -1,5 +1,8 @@
 package com.qa.rest.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,31 +25,37 @@ public class TaskService {
 		this.repo = repo;
 	}
 	
-	private TaskDTO map(Task model) {
+	private TaskDTO mapToDTO(Task model) {
 		return this.mapper.map(repo, TaskDTO.class);
 	}
 	
 	//Get
 	
-		@GetMapping
+	@GetMapping("/readAll")
+	public List<TaskDTO> readAll() {
+		List<Task> dbList = (this.repo.findAll());
+		List<TaskDTO> resultList = dbList.stream().map(this::mapToDTO).collect(Collectors.toList());
 		
-		//Post
+		return resultList;
+	}
 		
-		@PostMapping("/create")
-		public TaskDTO create(Task task) {
-			return this.map(this.repo.save(task));
-		}
+	@GetMapping("/read/{id}")
+		
+	//Post
+		
+	@PostMapping("/create")
+	public TaskDTO create(Task task) {
+		return this.mapToDTO(this.repo.save(task));
+	}
 		
 		
-		//Put
+	//Put
 		
-		@PutMapping
+	@PutMapping
 		
-		//Delete
+	//Delete
 		
-		@DeleteMapping
-
-	
+	@DeleteMapping
 	
 
 }
