@@ -48,12 +48,15 @@ public class TaskController {
 
 	@PostMapping("/create")
 	public ResponseEntity<TaskDTO> create(@RequestBody Task task) {
-		return new ResponseEntity<TaskDTO>(this.service.create(task), HttpStatus.CREATED);
+		return new ResponseEntity<TaskDTO>(this.service.create(task), HttpStatus.CREATED);	
 	}
 
 	// Put
 
-	@PutMapping
+	@PutMapping("/update/{id}")
+	public ResponseEntity<TaskDTO> update(@PathVariable("id") Long id, @RequestBody Task task) {
+		return new ResponseEntity<TaskDTO>(this.service.update(id, task), HttpStatus.ACCEPTED);
+	}
 	
 	//Delete
 	

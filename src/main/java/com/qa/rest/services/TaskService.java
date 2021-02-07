@@ -18,19 +18,20 @@ public class TaskService {
 	private ModelMapper mapper;
 
 	@Autowired
-	public TaskService(TaskRepo repo) {
+	public TaskService(TaskRepo repo, ModelMapper mapper) {
 		super();
 		this.repo = repo;
+		this.mapper = mapper;
 	}
-	
+
 	private TaskDTO mapToDTO(Task model) {
-		return this.mapper.map(repo, TaskDTO.class);
+		return this.mapper.map(model, TaskDTO.class);
 	}
 	
 	//Get
 	
 	public List<TaskDTO> readAll() {
-		List<Task> dbList = (this.repo.findAll());
+		List<Task> dbList = this.repo.findAll();
 		List<TaskDTO> resultList = dbList.stream().map(this::mapToDTO).collect(Collectors.toList());
 		
 		return resultList;
@@ -49,6 +50,15 @@ public class TaskService {
 		
 		
 	//Put
+	
+	public TaskDTO update(Long id, Task newDetails) {
+		this.repo.findById(id).orElseThrow();
+		
+		newDetails.setId(id);
+		TaskDTO result = mapToDTO(this.repo.save(newDetails));
+		
+		return result;
+	}
 		
 		
 	//Delete
