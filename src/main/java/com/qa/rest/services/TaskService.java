@@ -1,5 +1,6 @@
 package com.qa.rest.services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,10 @@ public class TaskService {
 		this.repo = repo;
 	}
 	
+	private TaskDTO map(Task model) {
+		return this.mapper.map(repo, TaskDTO.class);
+	}
+	
 	//Get
 	
 		@GetMapping
@@ -29,7 +34,7 @@ public class TaskService {
 		
 		@PostMapping("/create")
 		public TaskDTO create(Task task) {
-			return this.repo.save(task);
+			return this.map(this.repo.save(task));
 		}
 		
 		

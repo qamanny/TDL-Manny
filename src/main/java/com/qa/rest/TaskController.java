@@ -1,12 +1,15 @@
 package com.qa.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.dto.TaskDTO;
 import com.qa.persistence.domain.Task;
 import com.qa.rest.services.TaskService;
 
@@ -29,8 +32,8 @@ public class TaskController {
 	//Post
 	
 	@PostMapping("/create")
-	public Task create(@RequestBody Task task) {
-		return this.service.create(task);
+	public ResponseEntity<TaskDTO> create(@RequestBody Task task) {
+		return new ResponseEntity<TaskDTO>(this.service.create(task), HttpStatus.CREATED);
 	}
 	
 	
