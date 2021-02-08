@@ -13,7 +13,7 @@ import com.qa.persistence.domain.repos.ProjectRepo;
 
 @Service
 public class ProjectService {
-	
+
 	private ProjectRepo repo;
 	private ModelMapper mapper;
 
@@ -27,47 +27,44 @@ public class ProjectService {
 	private ProjectDTO mapToDTO(Project model) {
 		return this.mapper.map(model, ProjectDTO.class);
 	}
-	
-	//Get
-	
+
+	// Get
+
 	public List<ProjectDTO> readAll() {
 		List<Project> dbList = this.repo.findAll();
 		List<ProjectDTO> resultList = dbList.stream().map(this::mapToDTO).collect(Collectors.toList());
-		
+
 		return resultList;
 	}
-		
+
 	public ProjectDTO readOne(Long id) {
-		
+
 		return mapToDTO(this.repo.findById(id).orElseThrow());
 	}
-		
-	//Post
-		
+
+	// Post
+
 	public ProjectDTO create(Project project) {
 		return this.mapToDTO(this.repo.save(project));
 	}
-		
-		
-	//Put
-	
+
+	// Put
+
 	public ProjectDTO update(Long id, Project newDetails) {
 		this.repo.findById(id).orElseThrow();
-		
+
 		newDetails.setId(id);
 		ProjectDTO result = mapToDTO(this.repo.save(newDetails));
-		
+
 		return result;
 	}
-		
-		
-	//Delete
-		
+
+	// Delete
+
 	public boolean delete(Long id) {
 		this.repo.deleteById(id);
-		
+
 		return !this.repo.existsById(id);
 	}
-	
 
 }
