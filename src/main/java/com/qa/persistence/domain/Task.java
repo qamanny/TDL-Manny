@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Task {
@@ -23,17 +24,22 @@ public class Task {
 	
 	@Column
 	private Boolean completed;
+	
+	@Column
+	@ManyToOne
+	private Project myProject;
 
 	public Task() {
 		super();
 	}
 
-	public Task(Long id, String taskName, Date deadline, Boolean completed) {
+	public Task(Long id, String taskName, Date deadline, Boolean completed, Project myProject) {
 		super();
 		this.id = id;
 		this.taskName = taskName;
 		this.deadline = deadline;
 		this.completed = completed;
+		this.myProject = myProject;
 	}
 
 	public Long getId() {
@@ -67,7 +73,14 @@ public class Task {
 	public void setCompleted(Boolean completed) {
 		this.completed = completed;
 	}
-	
+
+	public Project getMyProject() {
+		return myProject;
+	}
+
+	public void setMyProject(Project myProject) {
+		this.myProject = myProject;
+	}
 
 	
 

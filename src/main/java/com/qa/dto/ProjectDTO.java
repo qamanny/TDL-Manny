@@ -1,20 +1,23 @@
 package com.qa.dto;
 
+import java.util.List;
 
 public class ProjectDTO {
-	
+
 	private Long id;
-	
+
 	private String projectName;
+	private List<TaskDTO> taskList;
 
 	public ProjectDTO() {
 		super();
 	}
 
-	public ProjectDTO(Long id, String projectName) {
+	public ProjectDTO(Long id, String projectName, List<TaskDTO> taskList) {
 		super();
 		this.id = id;
 		this.projectName = projectName;
+		this.taskList = taskList;
 	}
 
 	public Long getId() {
@@ -31,6 +34,14 @@ public class ProjectDTO {
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+
+	public List<TaskDTO> getTaskList() {
+		return taskList;
+	}
+
+	public void setTaskList(List<TaskDTO> taskList) {
+		this.taskList = taskList;
 	}
 	
 	
