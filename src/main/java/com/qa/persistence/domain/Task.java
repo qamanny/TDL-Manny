@@ -25,7 +25,6 @@ public class Task {
 	@Column
 	private Boolean completed;
 	
-	@Column
 	@ManyToOne
 	private Project myProject;
 

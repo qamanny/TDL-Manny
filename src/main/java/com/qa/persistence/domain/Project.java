@@ -23,7 +23,7 @@ public class Project {
 	@Column
 	private String projectName;
 	
-	@OneToMany(mappedBy = "", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "myProject", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Task> taskList;
 
