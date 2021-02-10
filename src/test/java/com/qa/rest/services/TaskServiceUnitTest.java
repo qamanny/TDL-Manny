@@ -66,23 +66,23 @@ public class TaskServiceUnitTest {
 		Date date = simply.parse("2021-10-20");
 		
 		Task TEST_TASK = new Task(1L, "Certificate on freecodeCamp", date, false, null);
+		TaskDTO TEST_DTO = new TaskDTO(1L, "Certificate on freecodeCamp", date, false);
 		
 		//Rules
 		Mockito.when(this.mockedRepo.save(Mockito.any(Task.class))).thenReturn(TEST_TASK);
+		Mockito.when(this.mockedMapper.map(TEST_TASK, TaskDTO.class)).thenReturn(TEST_DTO);
 		
 		//Actions
 		TaskDTO result = this.service.create(TEST_TASK);
 		
 		
 		//Assertions
-		Assertions.assertThat(result).isEqualTo(this.mockedMapper.map(TEST_TASK, TaskDTO.class));
-		Assertions.assertThat(result)
-		.usingRecursiveComparison()
-		.isEqualTo(this.mockedMapper.map(TEST_TASK, TaskDTO.class));
+		Assertions.assertThat(result).isEqualTo(TEST_DTO);
+		Assertions.assertThat(result).usingRecursiveComparison().isEqualTo(TEST_DTO);
 		
 		//Assertion - Verification
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).save(Mockito.any(Task.class));
-	
+		Mockito.verify(this.mockedMapper, Mockito.times(1)).map(TEST_TASK, TaskDTO.class);
 	}
 
 	// Put Test
