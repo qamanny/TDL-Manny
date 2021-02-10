@@ -40,7 +40,7 @@ public class Task {
 		this.completed = completed;
 		this.myProject = myProject;
 	}
-
+ 
 	public Long getId() {
 		return id;
 	}
