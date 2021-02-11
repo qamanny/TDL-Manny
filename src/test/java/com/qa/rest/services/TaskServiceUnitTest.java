@@ -33,6 +33,14 @@ public class TaskServiceUnitTest {
 
 	@Test
 	public void readAll() {
+		
+		//Rules
+		
+		//Actions
+		
+		//Assertions
+		
+		//Assertions - Verification
 	}
 
 	@Test
@@ -89,12 +97,28 @@ public class TaskServiceUnitTest {
 	
 	@Test
 	public void update() {
+		
+		//Rules
+		
+		//Actions
+		
+		//Assertion
+		
+		//Assertion - Verification
 	}
 
 	// Delete Test
 
 	@Test
 	public void delete() {
+		
+		//Rules
+		
+		//Actions
+		
+		//Assertions
+		
+		//Assertion - Verification
 
 	}
 
