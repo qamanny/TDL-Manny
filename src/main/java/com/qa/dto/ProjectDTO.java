@@ -43,7 +43,5 @@ public class ProjectDTO {
 	public void setTaskList(List<TaskDTO> taskList) {
 		this.taskList = taskList;
 	}
-	
-	
 
 }

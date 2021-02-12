@@ -23,7 +23,7 @@ public class ProjectService {
 		this.repo = repo;
 		this.mapper = mapper;
 	}
-
+  
 	private ProjectDTO mapToDTO(Project model) {
 		return this.mapper.map(model, ProjectDTO.class);
 	}

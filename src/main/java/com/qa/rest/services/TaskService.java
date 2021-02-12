@@ -28,7 +28,7 @@ public class TaskService {
 		return this.mapper.map(model, TaskDTO.class);
 	}
 	
-	//Get
+	// Get
 	
 	public List<TaskDTO> readAll() {
 		List<Task> dbList = this.repo.findAll();
@@ -42,14 +42,14 @@ public class TaskService {
 		return mapToDTO(this.repo.findById(id).orElseThrow());
 	}
 		
-	//Post
+	// Post
 		
 	public TaskDTO create(Task task) {
 		return this.mapToDTO(this.repo.save(task));
 	}
 		
 		
-	//Put
+	// Put
 	
 	public TaskDTO update(Long id, Task newDetails) {
 		this.repo.findById(id).orElseThrow();
@@ -61,7 +61,7 @@ public class TaskService {
 	}
 		
 		
-	//Delete
+	// Delete
 		
 	public boolean delete(Long id) {
 		this.repo.deleteById(id);
