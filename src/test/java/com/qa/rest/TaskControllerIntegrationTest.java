@@ -31,7 +31,7 @@ import com.qa.persistence.domain.Task;
 		"classpath:data-test.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TaskControllerIntegrationTest {
-
+  
 	@Autowired
 	private MockMvc mock;
 
